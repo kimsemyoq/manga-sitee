@@ -23,7 +23,6 @@ const right = pageitems[7]; // sag
 let selectedTags = [];
 let currentStep = 0;
 
-// Arama kutusu elemanını seç
 
 locals.forEach((local) => {
   local.addEventListener('click', () => {
@@ -34,7 +33,7 @@ locals.forEach((local) => {
    
   });
 });
-// Arama kutusuna her karakter girildiğinde tetiklenecek fonksiyon
+
 filterinput.addEventListener('keyup',(e)=>{
   const mangaBoxes = document.querySelectorAll('.box');
   const searchText = e.target.value.toLowerCase()
@@ -59,14 +58,7 @@ filterinput.addEventListener('keyup',(e)=>{
   }))
 })
 
-// Sayfa öğelerini ve butonları tanımlıyoruz
 
-
-
-// Her bir sayfa öğesi için döngü
-
-
-    // Başlangıç sayfa indeksi (0 tabanlı)
 
 
 
@@ -98,7 +90,7 @@ filter()
 
 
 
-function filterByTag(tag) { // tag milf,harem gibiler
+function filterByTag(tag) { 
 
     let boxes = document.querySelectorAll('.box');
     
@@ -131,22 +123,16 @@ function filterByTag(tag) { // tag milf,harem gibiler
     } 
 
    else {
-    // 6'dan 10'a kadar olan .box sınıflarını seç ve margin-top değerini 60px yap
-
-
-    // Tüm kutuları seç
    
-
-    // Her box için işlem yap
     boxes.forEach(function(box) {
   
-        // Mevcut kutunun etiketlerini al, satırlarına böl ve boşlukları temizle
+ 
         let boxTags = box.querySelector('.etiket').innerText.split('\n').map(tag => tag.trim());
 
-        // Tüm seçili etiketlerin mevcut kutuda olup olmadığını kontrol et
+    
         let hasAllSelectedTags = selectedTags.every(selectedTag => boxTags.includes(selectedTag));
 
-        // Tüm seçili etiketler mevcutsa kutuyu göster, değilse gizle
+
         if (hasAllSelectedTags) {
             box.style.display = 'block';
             box.style.marginTop = '0px';
@@ -164,27 +150,21 @@ function filterByTag(tag) { // tag milf,harem gibiler
 
 
 
-// Tüm etiket p elementlerini seç
-
-
-// Her p elementi için 'detay' sınıfını ekle
-// Selecting DOM elements
 const startBtn = document.querySelector("#startBtn"),
   endBtn = document.querySelector("#endBtn"),
   prevNext = document.querySelectorAll(".prevNext"),
   numbers = document.querySelectorAll(".link");
 
-// Setting an initial step
 
 
-// Function to update the button states
+
 const updateBtn = () => {
-  // If we are at the last step
+
   if (currentStep === 4) {
     endBtn.disabled = true;
     prevNext[1].disabled = true;
   } else if (currentStep === 0) {
-    // If we are at the first step
+  
     startBtn.disabled = true;
     prevNext[0].disabled = true;
   } else {
@@ -195,62 +175,61 @@ const updateBtn = () => {
   }
 };
 
-// Add event listeners to the number links
+
 numbers.forEach((number, numIndex) => {
 
   number.addEventListener("click", (e) => {
     e.preventDefault();
-    // Set the current step to the clicked number link
-    currentStep = numIndex; //currenti degerini alir ve ustte kontrolu saglar
-    // Remove the "active" class from the previously active number link
+
+    currentStep = numIndex;
+  
     document.querySelector(".active").classList.remove("active");
-    // Add the "active" class to the clicked number link
+ 
     number.classList.add("active");
 
-    updateBtn(); // Update the button states
+    updateBtn();
   });
 });
 
-// Add event listeners to the "Previous" and "Next" buttons
+
 prevNext.forEach((button) => {
   button.addEventListener("click", (e) => {
-    // Increment or decrement the current step based on the button clicked
     if (e.target.id === "next") {
-      currentStep += 1; // next ise +1 artış
+      currentStep += 1;
   } else {
-      currentStep -= 1; // next değilse -1 azalış
+      currentStep -= 1; 
   }
 
     numbers.forEach((number, numIndex) => {
       
-      number.classList.toggle("active", numIndex === currentStep);  //esitse ekler
+      number.classList.toggle("active", numIndex === currentStep);  
       
-      updateBtn(); // Update the button states
+      updateBtn(); 
     });
   });
 });
 
-// Add event listener to the "Start" button
+
 startBtn.addEventListener("click", () => {
-  // Remove the "active" class from the previously active number link
+
   document.querySelector(".active").classList.remove("active");
-  // Add the "active" class to the first number link
+
   numbers[0].classList.add("active");
   currentStep = 0;
   
-  updateBtn(); // Update the button states
+  updateBtn()
   endBtn.disabled = false;
   prevNext[1].disabled = false;
 });
 
-// Add event listener to the "End" button
+
 endBtn.addEventListener("click", () => {
-  // Remove the "active" class from the previously active number link
+  
   document.querySelector(".active").classList.remove("active");
-  // Add the "active" class to the last number link
+
   numbers[4].classList.add("active");
   currentStep = 4;
-  updateBtn(); // Update the button states
+
   startBtn.disabled = false;
   prevNext[0].disabled = false;
 });
