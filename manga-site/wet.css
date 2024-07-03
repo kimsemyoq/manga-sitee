@@ -794,7 +794,7 @@ border-radius: 30px;
     transform: translateY(0);
   }
   to{
-    transform: translateY(-40px);
+    transform: translateY(-30px);
     
   }
 }
@@ -804,7 +804,13 @@ border-radius: 30px;
   cursor: pointer;
   width: 155px;
   height: 75px;
-  
+}
+.secilenler .info{
+  display: flex;
+  gap: 5px;
+}
+.info i{
+  transition: 0.5s linear;
 }
 .secilenler i{
   font-size: 19px;
