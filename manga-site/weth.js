@@ -9,11 +9,12 @@ const infostext = document.querySelectorAll('.info-onerilen');
 const buttonread = document.querySelectorAll('.read-manga');
 const secilenler = document.querySelector('.secilenler p');
 const bulunanlar = document.querySelector('.bulunanlar')
+const icon = document.querySelector('.info i')
 let acik = false
 let autoslider
 let currentindex = 0;
 updateSlider()
-/*document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     updateSlider();
      autoslider = setInterval(()=>{
         currentindex++
@@ -22,17 +23,22 @@ updateSlider()
         }
         updateSlider()
     },3000)
-}); */
+}); 
 
 
 
 secilenler.addEventListener('click', () => {
    
     if(acik==true){
-        bulunanlar.style.display = 'none'
+        bulunanlar.style.animation = 'reverseSlideOpacity 1s forwards,slideout 1s forwards'
+
+         icon.style.transform ='rotate(0deg)'
         acik = false
     }
+
     else{
+        icon.style.transform ='rotate(180deg)'
+        bulunanlar.style.animation = 'slideopacity 1s forwards'
         bulunanlar.innerHTML = ''
         const storedItems = localStorage.getItem('items');
         if (storedItems) {
